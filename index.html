@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Search for weather</title>
+        <link
+            href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css"
+            rel="stylesheet"
+            integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9"
+            crossorigin="anonymous"
+        />
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link
+            href="https://fonts.googleapis.com/css2?family=Aleo:wght@400;700&display=swap"
+            rel="stylesheet"
+        />
+        <link rel="stylesheet" href="style.css" />
+    </head>
+    <body>
+        <div id="app">
+            <div class="container">
+                <div class="fs-1 fw-bold text-center mt-4">
+                    Weather<span class="text-warning">Bee</span> 🐝
+                </div>
+                <div class="row g-3 mt-5">
+                    <div class="col-3"></div>
+                    <div class="col-6">
+                        <input
+                            type="text"
+                            readonly
+                            class="form-control-plaintext"
+                            id="staticEmail2"
+                            value="Please enter name of the city to check weather "
+                        />
+                        <div class="row">
+                            <div class="col-8">
+                                <input
+                                    type="text"
+                                    class="form-control"
+                                    id="city"
+                                    placeholder="Enter City"
+                                />
+                            </div>
+                            <div class="col-4 d-grid">
+                                <button
+                                    v-on:click="getWeather()"
+                                    type="submit"
+                                    class="btn bg-warning bg-gradient"
+                                >
+                                    🔍 Weather
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-3"></div>
+                </div>
+
+                <!-- Result start here -->
+                <div class="row result hidden mt-5">
+                    <div class="col-sm-1 col-md-1 col-lg-3"></div>
+                    <div class="col-sm-10 col-md-10 col-lg-6">
+                        <div class="card">
+                            <div
+                                class="card-header text-center bg-warning bg-gradient text-dark"
+                            >
+                                Current weather in
+                                <span class="fw-bold"
+                                    >{{name}}, {{country}}</span
+                                >
+                            </div>
+                            <div class="card-body">
+                                Local Time: {{localtime_epoch}}
+                                <span class="text-secondary">({{tz_id}})</span>
+                                <div class="row d-flex flex-row mt-3">
+                                    <div class="d-flex flex-row">
+                                        <div class="me-4">
+                                            <img
+                                                :src="icon"
+                                                style="width: 96px"
+                                                alt=""
+                                            />
+                                        </div>
+                                        <div
+                                            class="fw-bold me-4"
+                                            style="font-size: 3em"
+                                        >
+                                            {{temp_c}}&deg;C
+                                        </div>
+                                        <div class="p-2">
+                                            {{condition}}<br />Feels Like
+                                            {{feelslike_c}}
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row d-flex flex-row">
+                                    <div
+                                        class="d-flex justify-content-between flex-row"
+                                    >
+                                        <div
+                                            class="text-center secondary-info rounded fw-bold"
+                                        >
+                                            Wind:<br />{{wind_kph}} km/h
+                                        </div>
+                                        <div
+                                            class="text-center secondary-info rounded fw-bold"
+                                        >
+                                            Humidity:<br />{{humidity}} %
+                                        </div>
+                                        <div
+                                            class="text-center secondary-info rounded fw-bold"
+                                        >
+                                            Cloud:<br />{{cloud}} %
+                                        </div>
+                                        <div
+                                            class="text-center secondary-info rounded fw-bold"
+                                        >
+                                            UV Index:<br />{{uv}} %
+                                        </div>
+                                        <div
+                                            class="text-center secondary-info rounded fw-bold"
+                                        >
+                                            Pressure:<br />{{pressure_mb}} mb
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-1 col-md-1 col-lg-3"></div>
+                </div>
+                <!-- Result end here -->
+                <div class="row mt-5 error hidden">
+                    <div class="text-center text-danger">
+                        The city or region you entered is invalid. Please check
+                        if there is a typo. 🤔
+                    </div>
+                </div>
+            </div>
+            <div class="fixed-bottom text-center mb-2">
+                WeatherBee Application version 1.0.0. A fun project developed by
+                <a
+                    href="https://www.linkedin.com/in/md-asifullah/"
+                    target="black"
+                    class="text-success developer"
+                    >Asif</a
+                >
+            </div>
+        </div>
+        <script
+            src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
+            integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"
+            crossorigin="anonymous"
+        ></script>
+        <script
+            src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.min.js"
+            integrity="sha384-Rx+T1VzGupg4BHQYs2gCW9It+akI2MM/mndMCy36UVfodzcJcF0GGLxZIzObiEfa"
+            crossorigin="anonymous"
+        ></script>
+        <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+        <script src="app.js"></script>
+    </body>
+</html>
